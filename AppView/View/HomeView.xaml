@@ -146,7 +146,7 @@
             <Grid x:Name="GridMain"
                   Grid.Column="0"
                   Grid.Row="1"
-                  Background="White" />
+                  Background="{DynamicResource MaterialDesignBodyLight}" />
 
         </Grid>
 
@@ -158,15 +158,15 @@
               Background="{DynamicResource PrimaryHueDarkBrush}">
             <Grid.Effect>
                 <!--Efeito de sombra-->
-                <DropShadowEffect BlurRadius="2"
-                                  ShadowDepth="2"
+                <DropShadowEffect BlurRadius="15"
+                                  ShadowDepth="3"
                                   Color="#FFAEAEAE" />
             </Grid.Effect>
 
             <StackPanel>
                 <Grid x:Name="GridMenuOcult"
                       Height="60"
-                      Background="{DynamicResource SecondaryAccentForegroundBrush}">
+                      Background="{DynamicResource MaterialDesignLightBackground}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="25" />
                         <RowDefinition Height="*" />
@@ -226,8 +226,7 @@
                 </Grid>
 
                 <!--Lista de opções do Menu lateral (desabilitado o ScrollViewer) pacotes de icones : https://materialdesignicons.com/ -->
-                <ListView x:Name="ListViewMenu"
-                          Foreground="{DynamicResource SecondaryAccentForegroundBrush}"
+                <ListView x:Name="ListViewMenu"                          
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                           SelectionChanged="ListViewMenu_SelectionChanged">
 
@@ -245,7 +244,7 @@
                                        VerticalAlignment="Center"
                                        Margin="10" />
                         </StackPanel>
-                    </ListViewItem>
+                    </ListViewItem>                    
 
                     <ListViewItem x:Name="MnuCadastros"
                                   Height="50"
@@ -373,8 +372,7 @@
               Height="30">
             <StatusBar x:Name="stBar"
                        Height="50"
-                       VerticalAlignment="Center"
-                       Background="{DynamicResource PrimaryHueDarkBrush}">
+                       VerticalAlignment="Center">
                 <Button x:Name="tsFazerLogOff"
                         Style="{StaticResource MaterialDesignFlatButton}">
                     <MaterialDesign:PackIcon  Kind="Login"
@@ -382,14 +380,14 @@
                                               Height="20"
                                               HorizontalAlignment="Center"
                                               VerticalAlignment="Center"
-                                              Foreground="{DynamicResource SecondaryAccentForegroundBrush}" />
+                                              Foreground="{DynamicResource PrimaryHueDarkBrush}"/>
                 </Button>
                 <TextBlock Margin="5"
-                           Text="userlog"
+                           Text="USER_LOGADO"
                            x:Name="tsLabelUserLogado"
                            Width="auto"
                            FontStyle="Italic"
-                           Foreground="#FF3C6630" />
+                           Foreground="{DynamicResource PrimaryHueDarkBrush}" />
             </StatusBar>
         </Grid>
     </Grid>

@@ -84,7 +84,12 @@ namespace AppView.View
                     //Fechar Menu Lateral
                     ButtonCloseMenu_Click(sender, e);
                     //Limpa imtem da listView:
-                    GridMain.Children.Clear();//Inicio/Home
+                    //GridMain.Children.Clear();//Inicio/Home
+
+                    //MenuHome
+                    usc = new usc_mnuHome();
+                    GridMain.Children.Add(usc);
+
                     break;
                 case "MnuVendas":
                     //Fechar Menu Lateral

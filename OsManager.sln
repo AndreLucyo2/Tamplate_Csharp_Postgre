@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppView", "AppView\AppView.csproj", "{C4E45C9E-98C5-4273-9B76-4810D00C6AEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppConsole", "AppConsole\AppConsole.csproj", "{3E8717E6-4471-4168-9500-C7EEF41C8622}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppConsole", "AppConsole\AppConsole.csproj", "{3E8717E6-4471-4168-9500-C7EEF41C8622}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTO", "DTO\DTO.csproj", "{AE056060-3838-48C2-B519-66786450393B}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BDSqlCeLocal", "BDSqlCeLocal\BDSqlCeLocal.csproj", "{BDAF4E3A-7B44-4012-8278-C02DF6FF2B94}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BDSqlServer", "BDSqlServer\BDSqlServer.csproj", "{CDBE2EB6-E3A6-4AE0-8C27-4C8D7B20C9DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BDSqlPostGres", "BDSqlPostGres\BDSqlPostGres.csproj", "{D2FBFC4C-257F-4CF5-994C-19D015E8E585}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{CDBE2EB6-E3A6-4AE0-8C27-4C8D7B20C9DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDBE2EB6-E3A6-4AE0-8C27-4C8D7B20C9DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDBE2EB6-E3A6-4AE0-8C27-4C8D7B20C9DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2FBFC4C-257F-4CF5-994C-19D015E8E585}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2FBFC4C-257F-4CF5-994C-19D015E8E585}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2FBFC4C-257F-4CF5-994C-19D015E8E585}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2FBFC4C-257F-4CF5-994C-19D015E8E585}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

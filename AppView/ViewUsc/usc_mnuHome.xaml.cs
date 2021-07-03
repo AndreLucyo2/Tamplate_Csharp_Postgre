@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AppView
+namespace AppView.ViewUsc
 {
     /// <summary>
-    /// Interação lógica para MainWindow.xam
+    /// Interação lógica para usc_mnuHome.xam
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class usc_mnuHome : UserControl
     {
-        public MainWindow()
+        public usc_mnuHome()
         {
             InitializeComponent();
         }
