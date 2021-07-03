@@ -1,0 +1,229 @@
+﻿<Window x:Name="View_Home"
+        x:Class="AppView.View.HomeView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AppView.View"
+        mc:Ignorable="d"        
+        xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Background="{DynamicResource MaterialDesignBackground}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Width="1280"
+        Height="720"
+        MinWidth="1280"
+        MinHeight="720"
+        ResizeMode="CanResizeWithGrip"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        Closed="HomeView_Closed"
+        Loaded="HomeView_Loaded"
+        Title="Home">
+
+    <!--Criar e configurar a Animação do menu lateral -->
+    <Window.Resources>
+        <!--Mostrar o menu lateral  https://youtu.be/YQ1EJJZBHyE?t=679-->
+        <Storyboard x:Key="OpenMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <!--Mostrar 200 px-->
+                <EasingDoubleKeyFrame KeyTime="0:0:0.20" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <!--Recolher o menu lateral  https://youtu.be/YQ1EJJZBHyE?t=679-->
+        <Storyboard x:Key="CloseMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <!--Mostrar 50 px-->
+                <EasingDoubleKeyFrame KeyTime="0:0:0.20" Value="50"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+
+    <!-- Gatilho que dispara a animação do menu lateral-->
+    <Window.Triggers>
+        <!-- Ao Carregar a tela, iniciar com menu aberto. -->
+        <!-- Criar gatilho baseado no evento Window.Loaded que inicia a animação OpenMenu -->
+        <EventTrigger RoutedEvent="Window.Loaded" SourceName="View_Home">
+            <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
+        </EventTrigger>
+
+        <!-- Criar gatilho baseado no evento ButtonOpenMenu que inicia a animação OpenMenu -->
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
+        </EventTrigger>
+
+        <!-- Criar gatilho baseado no evento ButtonOpenMenu que inicia a animação CloseMenu -->
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu">
+            <BeginStoryboard Storyboard="{StaticResource CloseMenu}"/>
+        </EventTrigger>
+
+        <!-- Criar gatilho baseado no evento ListView.SelectionChanged que inicia a animação CloseMenu ao clicar no menu escolhido -->
+        <EventTrigger RoutedEvent="ListView.SelectionChanged" SourceName="ListViewMenu">
+            <BeginStoryboard Storyboard="{StaticResource CloseMenu}"/>
+        </EventTrigger>
+
+    </Window.Triggers>
+
+    <!--Tutorial: https://youtu.be/YQ1EJJZBHyE -->
+    <Grid x:Name="GridGeral1" Background="#FFDEDEDE" >
+
+        <Grid x:Name="GridGeral2" Margin="50,0,0,0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="453*"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="GridHome" Background="AliceBlue" Grid.Column="0" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1197*"/>
+                    <ColumnDefinition Width="25*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.Effect>
+                    <!--Efeito de sombra-->
+                    <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFACACAC"/>
+                </Grid.Effect>
+            </Grid>
+
+            <Grid x:Name="GridTituloTop" Height="60" VerticalAlignment="Top"  Background="{DynamicResource PrimaryHueDarkBrush}" Grid.Column="0" Grid.Row="0" >
+                <Grid.Effect>
+                    <!--Efeito de sombra-->
+                    <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFACACAC"/>
+                </Grid.Effect>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <!--
+                    pOR MINIATURA DE IMAGEM USER:
+                    https://docs.microsoft.com/pt-br/dotnet/framework/wpf/graphics-multimedia/how-to-load-an-image-as-a-thumbnail
+                    -->
+                    <TextBlock x:Name="txtNmnUserlogado" Text="Andre Lucio" Foreground="White" VerticalAlignment="Center" FontSize="16"/>
+                    <MaterialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False"  Margin="10" Foreground="White">
+                        <StackPanel Width="150">
+                            <Button Content="Configurações"/>
+                            <Button Content="Contas Login"/>
+                            <Button Content="Ajuda"/>
+                            <Separator/>
+                            <Button Content="Sair"/>
+                        </StackPanel>
+                    </MaterialDesign:PopupBox>
+                </StackPanel>
+                <TextBlock Text="Gerenciado OsManager" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26" Foreground="White"/>
+            </Grid>
+
+            <!--Recebe ans novas paginas conforme menu -->
+            <Grid x:Name="GridMain" Grid.Column="0" Grid.Row="1" Background="White" />
+
+        </Grid>
+
+        <!-- Menu lateral Inicia com 70px e ao mostrar fica com 200px -->
+        <Grid x:Name="GridMenu" Width="200" Margin="0,0,0,30" HorizontalAlignment="Left" Background="{DynamicResource PrimaryHueDarkBrush}">
+            <Grid.Effect>
+                <!--Efeito de sombra-->
+                <DropShadowEffect BlurRadius="2" ShadowDepth="2" Color="#FFAEAEAE"/>
+            </Grid.Effect>
+
+            <StackPanel>
+                <Grid x:Name="GridMenuOcult" Height="60" Background="{DynamicResource SecondaryAccentForegroundBrush}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="25"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="ButtonCloseMenu" Visibility="Collapsed" Grid.Column="1" Grid.Row="0" Width="30" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Foreground="{DynamicResource PrimaryHueDarkBrush}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}"  Click="ButtonCloseMenu_Click">
+                        <MaterialDesign:PackIcon Kind="ArrowLeft" Width="25" Height="25"/>
+                    </Button>
+                    <TextBlock x:Name="txtHome" Visibility="Collapsed" Grid.Column="0" Grid.RowSpan="2" Text="EmpresaX" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"  Foreground="{DynamicResource PrimaryHueDarkBrush}"/>
+
+
+                    <Button x:Name="ButtonOpenMenu" Width="30" Height="30" Grid.ColumnSpan="2" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource PrimaryHueDarkBrush}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}"  Click="ButtonOpenMenu_Click">
+                        <MaterialDesign:PackIcon Kind="Menu" Width="28" Height="28"/>
+                    </Button>
+
+                </Grid>
+
+                <!--Lista de opções do Menu lateral (desabilitado o ScrollViewer) pacotes de icones : https://materialdesignicons.com/ -->
+                <ListView x:Name="ListViewMenu" Foreground="{DynamicResource SecondaryAccentForegroundBrush}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListViewMenu_SelectionChanged">
+
+                    <ListViewItem x:Name="mnuHome" Height="50">
+                        <StackPanel Orientation="Horizontal" >
+                            <MaterialDesign:PackIcon Kind="Home" Margin="2" Height="30" Width="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Início" VerticalAlignment="Center" Margin="10"/>
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <ListViewItem x:Name="mnuCadastros" Height="50">
+                        <StackPanel Orientation="Horizontal">
+                            <MaterialDesign:PackIcon Kind="DatabasePlus" Margin="2" Height="30" Width="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Cadastros" VerticalAlignment="Center" Margin="10"/>
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <ListViewItem x:Name="mnuVendas" Height="50">
+                        <StackPanel Orientation="Horizontal">
+                            <MaterialDesign:PackIcon Kind="BarcodeScan" Margin="2" Height="30" Width="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Vendas" VerticalAlignment="Center"  Margin="10"/>
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <ListViewItem x:Name="mnuOrcamentos" Height="50">
+                        <StackPanel Orientation="Horizontal">
+                            <MaterialDesign:PackIcon Kind="Cocktail" Margin="2" Height="30" Width="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Orçamentos" VerticalAlignment="Center"  Margin="10"/>
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <ListViewItem x:Name="msuOrdemServico" Height="50">
+                        <StackPanel Orientation="Horizontal">
+                            <MaterialDesign:PackIcon Kind="AutoTowing" Margin="2" Height="30" Width="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Ordens de Serviço" VerticalAlignment="Center"  Margin="10"/>
+                        </StackPanel>
+                    </ListViewItem>
+
+
+
+                    <ListViewItem x:Name="mnuFinanceiro" Height="50">
+                        <StackPanel Orientation="Horizontal">
+                            <MaterialDesign:PackIcon Kind="CurrencyUsd" Margin="2" Height="30" Width="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Financeiro" VerticalAlignment="Center"  Margin="10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="mnuIndicadores" Height="50">
+                        <StackPanel Orientation="Horizontal">
+                            <MaterialDesign:PackIcon Kind="ChartFinance" Margin="2" Height="30" Width="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Indicadores Gráficos" VerticalAlignment="Center"  Margin="10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="mnuCadEmpresa" Height="50">
+                        <StackPanel Orientation="Horizontal" >
+                            <MaterialDesign:PackIcon Kind="AbjadArabic" Margin="2" Height="30" Width="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Cadastro de Empresas" VerticalAlignment="Center" Margin="10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="mnuConfigGerais" Height="50">
+                        <StackPanel Orientation="Horizontal" >
+                            <MaterialDesign:PackIcon Kind="Settings" Margin="2" Height="30" Width="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Configurações Gerais" VerticalAlignment="Center" Margin="10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+
+            </StackPanel>
+        </Grid>
+
+        <!--Barra de Status-->
+        <Grid x:Name="GridStatusBar" VerticalAlignment="Bottom" Height="30">
+            <StatusBar x:Name="stBar" Height="50" VerticalAlignment="Center" Background="{DynamicResource PrimaryHueDarkBrush}">
+                <Button x:Name="tsFazerLogOff" Style="{StaticResource MaterialDesignFlatButton}">
+                    <MaterialDesign:PackIcon  Kind="Login" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource SecondaryAccentForegroundBrush}"/>
+                </Button>
+                <TextBlock Margin="5" Text="userlog" x:Name="tsLabelUserLogado" Width="auto" FontStyle="Italic" Foreground="#FF3C6630" />
+            </StatusBar>
+        </Grid>
+    </Grid>
+
+</Window>
