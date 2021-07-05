@@ -6,7 +6,9 @@ namespace AppConsole
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Cod.TesteServerPostGres.TestePostGre();
+
+            Console.WriteLine("Sistema Finalizado com sucesso!");
         }
     }
 }

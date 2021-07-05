@@ -1,5 +1,7 @@
 ﻿using AppView.View;
 using BDSqlCeLocal;
+using BDSqlPostGres;
+using BDSqlPostGres.Cod;
 using System;
 using System.Windows;
 
@@ -21,17 +23,13 @@ namespace AppView
                 //1° - verificar conexão com banco: CAPTURA DADOS DA CONEXAO DO ARQUIVO **.CONFIG
                 //---------------------------------------------------------------------------------
                 //Cria e Testa a Conexao com Banco de Dados BD01 Local:
-                SQLCeServer.TestarStatusConexao(SQLCeServer.GetStrCon());
+                //SQLCeServer.TestarStatusConexao(SQLCeServer.GetStrCon());
 
-                //Cria e Testa a Conexao com Banco de Dados BD01 Local:
-                //BdSQLCe.TestarStatusConexao(BdSQLCe.ConectarBD02());
 
-                //Cria e Testa a Conexao com Banco de Dados BD01 Local:
-                //BdSQLCe.TestarStatusConexao(BdSQLCe.ConectarBD03());
-
-                //Cria e Testa a Conexao com Banco de Dados BD01 Local:
-                //BdSQLCe.TestarStatusConexao(BdSQLCe.ConectarBD04());
                 //---------------------------------------------------------------------------------
+                //Inicia a verifica a conexao com o Banco:
+                SqlPostGresServer.LoadConection();
+
 
                 #endregion
 
@@ -92,8 +90,12 @@ namespace AppView
                 //Fechar a aplicação
                 this.Shutdown();
 
-                //Encerrar totalmente a aplicação:
-                Application.Current.Shutdown();
+                if (System.Windows.Application.Current != null)
+                {
+                    //Encerrar totalmente a aplicação:
+                    Application.Current.Shutdown();
+                }
+
             }
         }
 

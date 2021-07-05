@@ -135,5 +135,11 @@ namespace AppView.View
                     break;
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            BDSqlPostGres.View.FrmBDConfig frm = new BDSqlPostGres.View.FrmBDConfig();
+            frm.ShowDialog();
+        }
     }
 }

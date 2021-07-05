@@ -127,7 +127,8 @@
                                              Margin="10"
                                              Foreground="White">
                         <StackPanel Width="150">
-                            <Button Content="Configurações" />
+                            <Button Content="BD Config"
+                                    Click="Button_Click" />
                             <Button Content="Contas Login" />
                             <Button Content="Ajuda" />
                             <Separator />
