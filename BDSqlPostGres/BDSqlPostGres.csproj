@@ -81,7 +81,7 @@
   <ItemGroup>
     <Compile Include="Cod\ConnetctionCrypt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Cod\SqlPostGresServer.cs" />
+    <Compile Include="Cod\ServidorPostGres.cs" />
     <Compile Include="View\FrmBDConfig.cs">
       <SubType>Form</SubType>
     </Compile>

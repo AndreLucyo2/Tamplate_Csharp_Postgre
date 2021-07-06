@@ -136,10 +136,22 @@ namespace AppView.View
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BtnBDConfig_Click(object sender, RoutedEventArgs e)
         {
             BDSqlPostGres.View.FrmBDConfig frm = new BDSqlPostGres.View.FrmBDConfig();
             frm.ShowDialog();
+        }
+
+        private void BtnSairHome_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Forms.DialogResult d = System.Windows.Forms.MessageBox.Show("Encerrar aplicação?", "Aviso", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Question, System.Windows.Forms.MessageBoxDefaultButton.Button2);
+
+            if (d.ToString() == "Yes")
+            {
+                //Encerrar a aplicação:
+                System.Windows.Application.Current.Shutdown();
+                return;
+            }
         }
     }
 }

@@ -127,12 +127,13 @@
                                              Margin="10"
                                              Foreground="White">
                         <StackPanel Width="150">
-                            <Button Content="BD Config"
-                                    Click="Button_Click" />
+                            <Button x:Name="BtnBDConfig" Content="BD Config"
+                                    Click="BtnBDConfig_Click" />
                             <Button Content="Contas Login" />
                             <Button Content="Ajuda" />
                             <Separator />
-                            <Button Content="Sair" />
+                            <Button x:Name="BtnSairHome" Content="Sair"
+                                    Click="BtnSairHome_Click" />
                         </StackPanel>
                     </MaterialDesign:PopupBox>
                 </StackPanel>

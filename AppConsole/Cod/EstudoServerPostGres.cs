@@ -5,8 +5,9 @@ using System.Text;
 
 namespace AppConsole.Cod
 {
-    public class TesteServerPostGres
+    public class EstudoServerPostGres
     {
+        //estudo de Postgres sem Padrao de camadas:
         public static void TestePostGre()
         {
             NpgsqlConnection conn = new NpgsqlConnection("Server=192.168.1.120;Port=5432;User Id=postgres;Password=12345678;Database=bsTeste01;");

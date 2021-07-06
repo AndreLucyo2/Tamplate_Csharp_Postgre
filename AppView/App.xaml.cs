@@ -28,7 +28,7 @@ namespace AppView
 
                 //---------------------------------------------------------------------------------
                 //Inicia a verifica a conexao com o Banco:
-                SqlPostGresServer.LoadConection();
+                ServidorPostGres.LoadConection();
 
 
                 #endregion

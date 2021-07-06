@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppConsole.Cod;
+using System;
 
 namespace AppConsole
 {
@@ -6,9 +7,11 @@ namespace AppConsole
     {
         static void Main(string[] args)
         {
-            Cod.TesteServerPostGres.TestePostGre();
+            //CRUD Postgres
+            CrudPosTgres.MainCRUD();
 
             Console.WriteLine("Sistema Finalizado com sucesso!");
+            Console.ReadKey();
         }
     }
 }

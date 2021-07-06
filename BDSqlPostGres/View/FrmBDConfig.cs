@@ -17,10 +17,10 @@ namespace BDSqlPostGres.View
         private void FrmBDConfig_Load(object sender, EventArgs e)
         {
             //Arquivo *.config:
-            string ArquivoBDConfig = SqlPostGresServer.ArquivoBDConfig;
+            string ArquivoBDConfig = ServidorPostGres.GetPathArquivoBDConfig;
 
             //Pasta Para BKP:
-            string pastaBkp = SqlPostGresServer.PastaBkp;
+            string pastaBkp = ServidorPostGres.GetPathPastaBkp;
 
             try
             {
@@ -107,15 +107,15 @@ namespace BDSqlPostGres.View
                 }
 
                 //as informação ja estarão na tela: passa as informações da tela para a conexao
-                SqlPostGresServer.servidor = TxtServidor.Text;
-                SqlPostGresServer.porta = TxtPorta.Text;
-                SqlPostGresServer.banco = TxtBanco.Text;               
-                SqlPostGresServer.usuario = TxtUsuario.Text;
-                SqlPostGresServer.senha = TxtSenha.Text;
+                ServidorPostGres.servidor = TxtServidor.Text;
+                ServidorPostGres.porta = TxtPorta.Text;
+                ServidorPostGres.banco = TxtBanco.Text;               
+                ServidorPostGres.usuario = TxtUsuario.Text;
+                ServidorPostGres.senha = TxtSenha.Text;
 
                 //testar conexao: usa a strig conforme dados da tela:
                 NpgsqlConnection conexao = new NpgsqlConnection();
-                conexao.ConnectionString = SqlPostGresServer.StringDeConexao;
+                conexao.ConnectionString = ServidorPostGres.GetStrConn;
                 conexao.Open();
                 conexao.Close();
 
@@ -147,7 +147,7 @@ namespace BDSqlPostGres.View
                 //teste se tem algum campo esta vazio:
                 if (TxtServidor.Text != "" && TxtBanco.Text != "" && TxtPorta.Text != "" && TxtUsuario.Text != "" && TxtSenha.Text != "")
                 {
-                    SqlPostGresServer.SalvarDbConfig(TxtServidor.Text, TxtPorta.Text, TxtBanco.Text, TxtUsuario.Text, TxtSenha.Text);
+                    ServidorPostGres.SalvarDbConfig(TxtServidor.Text, TxtPorta.Text, TxtBanco.Text, TxtUsuario.Text, TxtSenha.Text);
 
                     if (TxtPastaPadraoBkp.Text != "")
                     {
@@ -160,7 +160,7 @@ namespace BDSqlPostGres.View
                     else
                     {
                         //Passa o enredeço para a tela:
-                       TxtPastaPadraoBkp.Text = SqlPostGresServer.pastaBkp;
+                       TxtPastaPadraoBkp.Text = ServidorPostGres.pastaBkp;
                     }
 
                     //fechar a tela:
@@ -202,7 +202,7 @@ namespace BDSqlPostGres.View
             //------------------------------------------------------------------------
 
             //Pasta Para BKP:
-            string pastaBkp = SqlPostGresServer.PastaBkp;
+            string pastaBkp = ServidorPostGres.GetPathPastaBkp;
 
             //Captura o caminha de uma pasta para sarvar o arquivo de backup, se for digerente da configurada:
             FolderBrowserDialog folder = new FolderBrowserDialog();
